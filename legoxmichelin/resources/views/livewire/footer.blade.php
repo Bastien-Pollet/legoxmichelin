@@ -1,12 +1,10 @@
 <div>
     <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2024 Lego x Michelin. All rights reserved.</p>
-            <nav class="footer-nav">
-                <a href="/about">About Us</a>
-                <a href="/contact">Contact</a>
-                <a href="/privacy">Privacy Policy</a>
+            <nav class="footer_nav">
+                <a href="/home"><x-eva-home-outline class="icon_footer"/></a>
+                <a href="#"><x-bx-message-check class="icon_footer"/></a>
+                <a href="#"><x-zondicon-calendar class="icon_footer"/></a>
+                <a href="#"><x-tabler-user class="icon_footer"/></a>
             </nav>
-        </div>
     </footer>
 </div>
