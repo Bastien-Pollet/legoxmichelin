@@ -13,23 +13,6 @@ CREATE DATABASE IF NOT EXISTS `sockstep` DEFAULT CHARACTER SET utf8mb4 COLLATE u
 USE `sockstep`;
 
 -- --------------------------------------------------------
--- Table structure for table `users`
--- --------------------------------------------------------
-
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `join_date` date NOT NULL,
-  `avatar` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
 -- Table structure for table `socks`
 -- --------------------------------------------------------
 
@@ -133,70 +116,8 @@ CREATE TABLE `event_requirements` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
--- Table structure for table `ratings`
--- --------------------------------------------------------
-
-DROP TABLE IF EXISTS `ratings`;
-CREATE TABLE `ratings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `sock_id` int(11) NOT NULL,
-  `rating` int(11) NOT NULL CHECK (`rating` >= 1 AND `rating` <= 5),
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_sock_unique` (`user_id`,`sock_id`),
-  KEY `sock_id` (`sock_id`),
-  CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `ratings_ibfk_2` FOREIGN KEY (`sock_id`) REFERENCES `socks` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
--- Table structure for table `event_registrations`
--- --------------------------------------------------------
-
-DROP TABLE IF EXISTS `event_registrations`;
-CREATE TABLE `event_registrations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `event_id` int(11) NOT NULL,
-  `registration_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` enum('confirmed','pending','cancelled') DEFAULT 'confirmed',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_event_unique` (`user_id`,`event_id`),
-  KEY `event_id` (`event_id`),
-  CONSTRAINT `event_registrations_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `event_registrations_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
--- Table structure for table `favorites`
--- --------------------------------------------------------
-
-DROP TABLE IF EXISTS `favorites`;
-CREATE TABLE `favorites` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `sock_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_sock_favorite` (`user_id`,`sock_id`),
-  KEY `sock_id` (`sock_id`),
-  CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`sock_id`) REFERENCES `socks` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
 -- Insertion des données
 -- --------------------------------------------------------
-
--- Insertion des utilisateurs
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `join_date`, `avatar`) VALUES
-(1, 'Sophie Martin', 'sophie.martin@email.com', '$2y$10$example_hash_password_1', '2025-12-10', NULL),
-(2, 'Thomas Dubois', 'thomas.dubois@email.com', '$2y$10$example_hash_password_2', '2025-12-15', NULL),
-(3, 'Emma Lefebvre', 'emma.lefebvre@email.com', '$2y$10$example_hash_password_3', '2026-01-02', NULL),
-(4, 'Lucas Bernard', 'lucas.bernard@email.com', '$2y$10$example_hash_password_4', '2026-01-05', NULL),
-(5, 'Camille Rousseau', 'camille.rousseau@email.com', '$2y$10$example_hash_password_5', '2026-01-08', NULL);
 
 -- Insertion des chaussettes
 INSERT INTO `socks` (`id`, `name`, `design`, `description`, `price`, `color_gradient`, `recycled_content`, `image_url`, `total_rating`, `rating_count`) VALUES
@@ -295,54 +216,5 @@ INSERT INTO `event_requirements` (`event_id`, `requirement_text`) VALUES
 (9, 'Inscription en ligne obligatoire'),
 (10, 'Équipe de 4 personnes'),
 (10, 'Inscription par équipe');
-
--- Insertion des notes (ratings)
-INSERT INTO `ratings` (`user_id`, `sock_id`, `rating`) VALUES
-(1, 1, 5),
-(1, 3, 4),
-(1, 4, 5),
-(2, 1, 4),
-(2, 2, 5),
-(2, 5, 3),
-(3, 3, 5),
-(3, 4, 5),
-(3, 6, 4),
-(4, 1, 5),
-(4, 2, 4),
-(4, 7, 5),
-(5, 3, 5),
-(5, 8, 4),
-(5, 2, 5);
-
--- Insertion des inscriptions aux événements
-INSERT INTO `event_registrations` (`user_id`, `event_id`, `status`) VALUES
-(1, 1, 'confirmed'),
-(1, 3, 'confirmed'),
-(1, 6, 'confirmed'),
-(2, 1, 'confirmed'),
-(2, 4, 'confirmed'),
-(2, 7, 'confirmed'),
-(3, 2, 'confirmed'),
-(3, 5, 'confirmed'),
-(3, 8, 'confirmed'),
-(4, 4, 'confirmed'),
-(4, 9, 'confirmed'),
-(5, 3, 'confirmed'),
-(5, 6, 'confirmed'),
-(5, 10, 'confirmed');
-
--- Insertion des favoris
-INSERT INTO `favorites` (`user_id`, `sock_id`) VALUES
-(1, 3),
-(1, 4),
-(2, 1),
-(2, 2),
-(3, 3),
-(3, 6),
-(3, 8),
-(4, 1),
-(4, 7),
-(5, 2),
-(5, 3);
 
 COMMIT;
