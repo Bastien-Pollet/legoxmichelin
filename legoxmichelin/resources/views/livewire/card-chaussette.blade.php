@@ -1,9 +1,14 @@
 <div class="container_votes">
+    @auth
+        <a class="lien_add_chaussette" href="/add-socks">Toi aussi créer ta chaussette !</a>
+    @else
+        <a class="lien_add_chaussette" href="{{route('login')}}">Connecte toi pour créer ta chaussette !</a>
+    @endauth
     @foreach($socks as $sock)
         <div class="card_chaussette">
             <x-radix-cross-1 class="croix"/>
             <div class="block_haut">
-                <img class="img_socks" src="{{ $sock->image_url }}" alt="{{ $sock->name }}">
+                <img class="img_socks" src="{{$sock->image_src}}" alt="{{ $sock->name }}">
                 <div class="title_socks" >
                     <h2>{{ $sock->name }}</h2>
                     <p>{{ $sock->description }}</p>

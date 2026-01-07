@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', function () {return view('pages.home');})->name('home');
 Route::get('/votes', function () {return view('pages.pageVotes');})->name('votes');
+Route::get('/events', function () {return view('pages.pagesEvents');})->name('events');
+Route::get('/add-socks', function () {return view('pages.pagesAddSocks');})->name('add-socks');
