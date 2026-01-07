@@ -18,11 +18,15 @@
                <div class="block_bas">
                 <p class="text_vote">Votre vote :</p>
                 <div class="vote_socks" >
-                    <button type="button" wire:click="vote({{$sock->id}}, 1)"><x-bi-star-fill class="icon_footer"/></button>
-                    <button type="button" wire:click="vote({{$sock->id}}, 2)"><x-bi-star-fill class="icon_footer"/></button>
-                    <button type="button" wire:click="vote({{$sock->id}}, 3)"><x-bi-star-fill class="icon_footer"/></button>
-                    <button type="button" wire:click="vote({{$sock->id}}, 4)"><x-bi-star-fill class="icon_footer"/></button>
-                    <button type="button" wire:click="vote({{$sock->id}}, 5)"><x-bi-star-fill class="icon_footer"/></button>
+                    @for($i = 1; $i <= 5; $i++)
+                    <button 
+                        class="btn_etoiles {{ isset($notes[$sock->id]) && $notes[$sock->id] >= $i ? 'test' : '' }}" 
+                        type="button" 
+                        wire:click="vote({{$sock->id}}, {{$i}})"
+                    >
+                        <x-phosphor-lego-fill class="icon_votes"/>
+                        </button>
+                    @endfor
                 </div>
                 <p class="text_vote">Vous avez donné {{ $notes[$sock->id] }} briques</p>
             </div>

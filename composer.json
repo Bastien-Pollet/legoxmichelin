@@ -1,5 +1,6 @@
 {
     "require": {
-        "laravel/fortify": "^1.33"
+        "laravel/fortify": "^1.33",
+        "codeat3/blade-phosphor-icons": "^2.3"
     }
 }

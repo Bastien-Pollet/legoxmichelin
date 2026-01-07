@@ -5,9 +5,9 @@ namespace App\Livewire;
 use App\Models\Socks;
 use Livewire\Component;
 
+
 class CardChaussette extends Component
 {
-
     public $socks;
     public $notes = []; 
 
@@ -20,12 +20,10 @@ class CardChaussette extends Component
         }
     }
 
-
     public function vote($sockId, $note)
     {
         $this->notes[$sockId] = $note;
     }
-
 
     public function render()
     {

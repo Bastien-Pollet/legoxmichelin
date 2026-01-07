@@ -16,7 +16,7 @@
     </main> 
     <livewire:footer />
     <script>
-      const socks = document.querySelectorAll('.img_socks');
+        const socks = document.querySelectorAll('.img_socks');
 
         socks.forEach(sock => {
             sock.addEventListener('click', () => {
@@ -37,6 +37,8 @@
                 croix.addEventListener('click', close, { once: true });
             });
         });
+
+
     </script> 
     @livewireScripts
 </body>

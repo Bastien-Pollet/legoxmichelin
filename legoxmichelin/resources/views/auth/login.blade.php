@@ -1,7 +1,7 @@
 <x-layouts.app>
      <div class="container_login container">
       <h2 class="titre_vert f-lucida">Connexion</h2>
-      <div class="block_form_login f-montserrat">
+      <div class="block_form_login ">
         <form action="{{route('login')}}" method="post" class="">
           <!-- @csrf -->
           <input type="email" name="email" required placeholder="Votre email" />
