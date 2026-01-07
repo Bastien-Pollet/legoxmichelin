@@ -9,7 +9,7 @@ class CardChaussette extends Component
 {
 
     public $socks;
-      public $notes = []; 
+    public $notes = []; 
 
     public function mount()
     {
@@ -19,6 +19,7 @@ class CardChaussette extends Component
             $this->notes[$sock->id] = 0;
         }
     }
+
 
     public function vote($sockId, $note)
     {
