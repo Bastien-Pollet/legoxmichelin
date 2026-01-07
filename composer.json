@@ -1,5 +1,5 @@
 {
     "require": {
-        "livewire/livewire": "^3.7"
+        "laravel/fortify": "^1.33"
     }
 }
