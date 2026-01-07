@@ -1,7 +1,10 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 
 /* Css Footer */
@@ -15,7 +18,7 @@
     z-index: 1000;
 }
 
-.footer_nav{
+.footer_nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,3 +32,90 @@
     margin: 10px;
 }
 
+/* CSS Accueil */
+
+.banner {
+    background-color: palevioletred;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    ;
+}
+
+.intro {
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.intro h3 {
+    margin-bottom: 0.5rem;
+}
+
+.stats {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: #ccc 1px solid;
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.presentation_title {
+    margin-left: 1.5rem;
+}
+
+.presentation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1rem;
+    border: #ccc 1px solid;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.text_presentation {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.icon {
+    background-color: palevioletred;
+    width: 40px;
+    padding: 0.4rem;
+    border-radius: 100%;
+}
+
+.engagement {
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 7rem;
+}
+
+.engagement h3 {
+    margin-bottom: 0.5rem;
+}
